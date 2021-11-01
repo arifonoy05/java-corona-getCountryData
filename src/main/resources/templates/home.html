@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>HomePage</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="mb-0 pb-0">Corona Stats</h1>
+    <p class="mt-0 pt-0">This application lists the number of current COVID-19 cases around the globe</p>
+</div>
+
+<div class="container">
+    <div class="bg-success p-2 text-dark bg-opacity-10">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr>
+        <p>
+            New cases reported since yesterday: <span th:text="${totalNewCases}"></span>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>State</th>
+            <th>Country</th>
+            <th>Total Cases Reported</th>
+            <th>Changes since Last Day</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
